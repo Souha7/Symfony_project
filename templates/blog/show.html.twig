@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <article class="mt-4 text-center">
+        <h2>{{article.title}}</h2>
+        <div>Catégorie : {{ article.category.title }}</div>
+        <div class="metadata small text-muted">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}</div>
+        <div class="content single-article-show">
+            <img src="{{ article.image}}" class="rounded" alt="article">
+            
+            <div class="border border-2 mt-2 mb-2 p-3">{{ article.content |raw }}</div> {# Le filtre raw pour nous donner le contenu tel qu'il est (m avec les balises telle qu'elle est) #}
+        </div>
+    </article>
+
+    <section class="border border-2 p-3" id="commentaires">
+
+        {% for comment in article.comments %}
+            <div class="comment">
+                <div class="row">
+
+                    <div class="col-3">
+                    
+                        {{comment.author}} (<small>{{comment.createdAt | date('d/m/Y à H:i') }}</small>)
+
+                    </div>
+
+                    <div class="col">
+                    
+                    {{comment.content |raw}}
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+
+    </section>
+
+{% endblock %}
