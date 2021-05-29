@@ -115,5 +115,16 @@ class BlogController extends AbstractController
         ]);
     }
 
-    
+    /**
+     * @Route("/blog/delete/{id}", name="blog_delete")
+     */
+    public function delete(Article $article){
+        $entityManager = $this->getDoctrine()->getManager();
+        $article = $entityManager->getRepository(Article::class)->find($article->getId());
+
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('blog');
+    }    
 }

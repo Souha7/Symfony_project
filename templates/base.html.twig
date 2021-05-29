@@ -24,12 +24,37 @@
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('blog')}}">Articles</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('blog_create')}}">Créer un article</a>
                         </li>
+
+                        
+
+
+                        {% if not app.user %} {#Comment savoir si personne est connectée ou pas (app variable globale dans twig)#}
+
+                            {#<li class="nav-item">
+                                <a class="nav-link" href="{{ path('security_login')}}">Connexion</a>
+                            </li>#}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('security_registration')}}">S'inscrire</a>
+                            </li>
+
+                        {% else %}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('security_logout')}}">Déconnexion</a>
+                            </li>
+
+                        {% endif %}
+                        
+
                     </ul>
                 </div>
 

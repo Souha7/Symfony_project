@@ -83,3 +83,9 @@
     -webkit-animation-name: tada;
     animation-name: tada;
 }
+
+.cover-image {
+    background-image: url("/images/back.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
